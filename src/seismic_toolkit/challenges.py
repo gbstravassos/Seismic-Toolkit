@@ -1,0 +1,50 @@
+"""Eight intentionally unfinished student exercises.
+
+The base application works without these functions. Run `pytest -m exercise`
+after implementing them. Reference implementations are in solutions/.
+"""
+
+from __future__ import annotations
+
+import numpy as np
+import pandas as pd
+
+
+def normalize_trace(trace: np.ndarray) -> np.ndarray:
+    """W1: divide by maximum absolute amplitude; zero traces remain zero."""
+    raise NotImplementedError("Week 1: implement normalize_trace")
+
+
+def estimate_shift_samples(baseline: np.ndarray, monitor: np.ndarray, max_lag_samples: int) -> int:
+    """W2: return signed integer delay; positive = monitor later."""
+    raise NotImplementedError("Week 2: implement estimate_shift_samples")
+
+
+def moving_rms(trace: np.ndarray, window: int) -> np.ndarray:
+    """W3: centered moving RMS with edge windows clipped to available samples."""
+    raise NotImplementedError("Week 3: implement moving_rms")
+
+
+def qc_generated_predictions(predictions: object, n_samples: int, n_classes: int) -> np.ndarray:
+    """W4: validate 1D integer class predictions in [0, n_classes)."""
+    raise NotImplementedError("Week 4: implement qc_generated_predictions")
+
+
+def fit_baseline_classifier(frame: pd.DataFrame):
+    """W5: fit and return an sklearn Pipeline on FEATURE_COLUMNS and facies."""
+    raise NotImplementedError("Week 5: implement fit_baseline_classifier")
+
+
+def evaluate_by_group(frame: pd.DataFrame, n_splits: int = 4) -> np.ndarray:
+    """W6: return group-separated CV accuracy scores, shape (n_splits,)."""
+    raise NotImplementedError("Week 6: implement evaluate_by_group")
+
+
+def prepare_plot_payload(trace: np.ndarray, dt: float) -> dict[str, list[float]]:
+    """W7: JSON-safe dict with 'time_s' and 'amplitude' lists."""
+    raise NotImplementedError("Week 7: implement prepare_plot_payload")
+
+
+def build_run_manifest(seed: int, n_samples: int, scores: np.ndarray) -> dict[str, object]:
+    """W8: JSON-safe dict with seed, n_samples, mean_accuracy, std_accuracy."""
+    raise NotImplementedError("Week 8: implement build_run_manifest")

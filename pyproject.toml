@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seismic-python-ai-course"
+version = "0.1.0"
+description = "Eight-week hands-on Python engineering, AI-assisted coding, and ML course using synthetic seismic data"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Seismic Python AI Course Contributors"}]
+license = {text = "MIT"}
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+course = ["jupyterlab>=4.0", "ipykernel>=6.0", "nbformat>=5.0"]
+dev = ["pytest>=8.0", "ruff>=0.8", "nbformat>=5.0"]
+app = ["streamlit>=1.35"]
+all = ["jupyterlab>=4.0", "ipykernel>=6.0", "nbformat>=5.0", "pytest>=8.0", "ruff>=0.8", "streamlit>=1.35"]
+
+[project.scripts]
+seismic-demo = "seismic_toolkit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not exercise'"
+markers = ["exercise: deliberately failing student challenges until implemented"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*" = ["E402"]
