@@ -10,9 +10,46 @@ import numpy as np
 import pandas as pd
 
 
+
 def normalize_trace(trace: np.ndarray) -> np.ndarray:
-    """W1: divide by maximum absolute amplitude; zero traces remain zero."""
-    raise NotImplementedError("Week 1: implement normalize_trace")
+    """
+    Normalize a seismic trace by its maximum absolute amplitude.
+
+    Parameters
+    ----------
+    trace : np.ndarray
+        Nonempty, finite, one-dimensional numeric array.
+
+    Returns
+    -------
+    np.ndarray
+        New array with normalized amplitudes.
+        A zero-amplitude trace returns an array of zeros.
+
+    Raises
+    ------
+    ValueError
+        If the input is empty, nonnumeric, nonfinite,
+        or not one-dimensional.
+    """
+    try:
+        a = np.asarray(trace, dtype=np.float64)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Trace must contain numeric values") from exc
+
+    if a.ndim != 1 or a.size == 0:
+        raise ValueError("Trace must be a nonempty, one-dimensional array")
+
+    if not np.all(np.isfinite(a)):
+        raise ValueError("Trace must contain only finite values")
+
+    max_amplitude = np.max(np.abs(a))
+
+    if max_amplitude == 0:
+        return np.zeros_like(a)
+
+    return a / max_amplitude
+
 
 
 def estimate_shift_samples(baseline: np.ndarray, monitor: np.ndarray, max_lag_samples: int) -> int:
