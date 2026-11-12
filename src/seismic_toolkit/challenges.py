@@ -9,6 +9,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from numpy.typing import NDArray
 
 
 def normalize_trace(trace: np.ndarray) -> np.ndarray:
@@ -49,7 +50,6 @@ def normalize_trace(trace: np.ndarray) -> np.ndarray:
         return np.zeros_like(a)
 
     return a / max_amplitude
-
 
 
 def estimate_shift_samples(baseline: np.ndarray, monitor: np.ndarray, max_lag_samples: int) -> int:
